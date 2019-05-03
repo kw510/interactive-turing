@@ -1,0 +1,53 @@
+{
+  "goal": "Create a Turing Machine that inverses a binary input and returns to the begining of the tape",
+  "transitions":[
+    {"read" : "0","write": "0","move" : "L", "quantity" : 3},
+    {"read" : "1","write": "1","move" : "L", "quantity" : 2},
+    {"read" : "B","write": "B","move" : "L", "quantity" : 1},
+    {"read" : "0","write": "0","move" : "R", "quantity" : 1},
+    {"read" : "1","write": "1","move" : "R", "quantity" : 1},
+    {"read" : "0","write": "","move" : "", "quantity" : 3},
+    {"read" : "1","write": "","move" : "", "quantity" : 4},
+    {"read" : "1","write": "0","move" : "L", "quantity" : 3},
+    {"read" : "*","write": "1","move" : "R", "quantity" : 3},
+    {"read" : "B","write": "1","move" : "", "quantity" : 3},
+    {"read" : "0","write": "1","move" : "", "quantity" : 1},
+    {"read" : "*","write": "*","move" : "", "quantity" : 10}
+
+  ],
+  "tests":[
+    {"input":"01010", "output": "10101", "accepts" : true }
+  ],
+  "subroutines":[
+    {
+      "name":"INV",
+      "program" : "{\"0\":{\"0\":{\"w\":\"1\",\"m\":1,\"n\":\"0\"},\"1\":{\"w\":\"0\",\"m\":1,\"n\":\"0\"},\"B\":{\"w\":\"B\",\"m\":-1,\"n\":\"1\"}},\"1\":{\"0\":{\"w\":\"0\",\"m\":-1,\"n\":\"1\"},\"1\":{\"w\":\"1\",\"m\":-1,\"n\":\"1\"},\"B\":{\"w\":\"B\",\"m\":1,\"n\":\"2\"}},\"2\":{}}",
+      "initialState" : "0",
+      "finalStates" : ["2"]
+    },
+    {
+      "name" : "LHS",
+      "program" : "{\"0\":{\"0\" : {\"w\" :\"0\", \"m\" :-1, \"n\" : \"0\" },\"1\" : {\"w\" :\"1\", \"m\" :-1, \"n\" : \"0\" },\"B\" : {\"w\" :\"B\", \"m\" :1, \"n\" : \"1\" }},\"1\" : {}}",
+      "initialState" : "0",
+      "finalStates" : ["1"]
+    },
+    {
+      "name" : "RHS",
+      "program" : "{\"0\":{\"0\":{\"w\":\"0\",\"m\":1,\"n\":\"0\"},\"1\":{\"w\":\"1\",\"m\":1,\"n\":\"0\"},\"B\":{\"w\":\"B\",\"m\":-1,\"n\":\"1\"}},\"1\":{}}",
+      "initialState" : "0",
+      "finalStates" : ["1"]
+    },
+    {
+      "name" : "*RHS",
+      "program" : "{\"0\":{\"*\":{\"w\":\"*\",\"m\":1,\"n\":\"0\"},\"B\":{\"w\":\"B\",\"m\":-1,\"n\":\"1\"}},\"1\":{}}",
+      "initialState" : "0",
+      "finalStates" : ["1"]
+    },
+    {
+      "name" : "*LHS",
+      "program" : "{\"0\":{\"*\":{\"w\":\"*\",\"m\":-1,\"n\":\"0\"},\"B\":{\"w\":\"B\",\"m\":1,\"n\":\"1\"}},\"1\":{}}",
+      "initialState" : "0",
+      "finalStates" : ["1"]
+    }
+  ]
+}

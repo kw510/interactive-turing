@@ -1,0 +1,55 @@
+{
+  "name": "interative-tm",
+  "version": "1.0.0",
+  "description": "learn tm via state diagrams",
+  "main": "app.js",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
+  "scripts": {
+    "start": "node app.js",
+    "cbabel": "cd src && nodemon --exec 'cd .. && babel src --out-file public/js/lib/game.js'",
+    "test": "concurrently 'nodemon app.js' 'npm:cbabel'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kw510/dissertation.git"
+  },
+  "author": "Kieran Warwick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kw510/dissertation/issues"
+  },
+  "homepage": "https://github.com/kw510/dissertation#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "@fortawesome/fontawesome-free": "^5.7.2",
+    "bootstrap": "^4.3.1",
+    "connect-mongo": "^2.0.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "grapheme-splitter": "^1.0.4",
+    "jquery": "^3.4.0",
+    "mongoose": "^5.4.19",
+    "node-sass-middleware": "^0.11.0",
+    "popper.js": "^1.14.7",
+    "pug": "^2.0.3",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
+}

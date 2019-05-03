@@ -1,0 +1,126 @@
+
+extends layout
+
+block content
+  h1 Level creator
+  p.lead To create a level, create transitions and subroutines to use, and assign tests to validate that the goal has been reached. Use the Kleene star (*) to read any input for transitions
+  hr 
+  
+  .row
+    .col-8
+      .form
+        .form-group
+          textarea.form-control#goal(type='text',placeholder='Insert goal here..')
+      svg#canvasSVG(viewBox='0 0 1920 880', style='border:1px solid;')
+        | Your browser does not support the svg tag.
+      .row.justify-content-center
+        .col.text-center#alerts
+      .form
+        .form-row
+          .form-group.col
+            button.btn.btn-outline-secondary(type='button', onclick="clearCanvas()") Clear
+
+          .form-group.col
+            .input-group
+              input.form-control#name(type='text',placeholder='Subroutine Name')
+              .input-group-append
+                button.btn.btn-outline-secondary#createSubroutine Create Subroutine
+        .form-row
+          .input-group
+              .input-group-prepend
+               .input-group-text Tape input
+              input.form-control#tapeinput(type='text', placeholder="01010101")
+              .input-group-append
+                button.btn.btn-outline-secondary(type='button', onclick="tapeinput()") Submit
+          
+
+      .row.justify-content-center
+        .col.text-center
+          #head.i.fas.fa-sort-down(style='font-size: 50px;')
+          svg#tapeSVG(viewBox='0 0 1900 100', style='border:0px solid;')
+            | Your browser does not support the svg tag.
+      .row.justify-content-center
+        .col.text-center
+          button.btn
+            i.fas.fa-fast-backward(onclick='reverseskip()')
+          button.btn(onclick='reverseStep()')
+            i.fas.fa-step-backward
+          button.btn(onclick='playClicked()')
+            i.fas.fa-play
+          button.btn(onclick='step()')
+            i.fas.fa-step-forward
+          button.btn(onclick='fastforward()')
+            i.fas.fa-fast-forward
+    .col
+      p.lead Create Transitions for the player to use
+      .form
+        .form-row
+          .form-group.col
+            label Number
+            input.form-control#number(type='number', min="1", step="1", oninput="validity.valid||(value='');")
+          .form-group.col
+            label Read
+            input.form-control#read(type='text')
+          .form-group.col
+            label Write
+            input.form-control#write(type='text')
+          .form-group.col
+            label Move
+            select#move.custom-select
+                    option(value=' ') 
+                    option(value='L') L
+                    option(value='R') R
+        .form-row
+          .form-group.col
+            button.btn.btn-primary.btn-block(type='button')#transition Add transition
+      hr
+      p.lead Create Tests to verify the goal
+      .form
+        .form-row
+          .form-group.col
+            label Input
+            input.form-control#input(type='text')
+          .form-group.col
+            label Output
+            input.form-control#output(type='text')
+          .form-group.col-2
+            label Accepted
+            input.form-control#accepted(type='checkbox')
+        .form-row
+          .form-group.col
+            button.btn.btn-primary.btn-block(type='button',onclick='')#test Add test
+      hr
+      p.lead Select Subroutines to provide player
+      .form
+        .form-row
+          .form-group.col
+            select.custom-select#select
+              option(value='0') Move to the right hand side (tape alphabet of 0,1,B)
+              option(value='1') Move to the left hand side (tape alphabet of 0,1,B)
+              option(value='2') Inverse binary input
+              option(value='3') Counter
+        .form-row
+          button.btn.btn-primary.btn-block(type='button',onclick='')#subroutine Add Subroutine
+  hr
+  .row
+    .col
+      p.lead Transitions Using
+      ul.list-inline.list-group-horizontal#transitionList
+        li.list-group-item.text-center#transitionListPlaceholder No Transitions
+    .col
+      p.lead Tests Using
+      ul.list-inline.list-group-horizontal#testList
+        li.list-group-item.text-center#transitionListPlaceholder No Tests
+    .col
+      p.lead Subroutines Using
+      ul.list-inline.list-group-horizontal#subroutineList
+        li.list-group-item.text-center#transitionListPlaceholder No Subroutines
+  hr
+  .row
+     button.btn.btn-primary.btn-block(type='button',onclick='')#submit Submit
+block scripts
+  
+  script(src='/js/lib/snap.svg.js')
+  script(src='/js/lib/index.js')
+  script(src='/js/lib/game.js')
+  script(src='/js/create.js')

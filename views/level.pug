@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  h3#goal Insert Goal here
+  svg#canvasSVG(viewBox='0 0 1920 880', style='border:1px solid;')
+    | Your browser does not support the svg tag.
+  .row.justify-content-center
+    .col.text-center#alerts
+  .row.justify-content-center
+    .col.text-center
+      button.btn.btn-outline-secondary(type='button', onclick="clearCanvas()") Clear
+    .col
+      .input-group
+        .input-group-prepend
+         .input-group-text Tape input
+        input.form-control#tapeinput(type='text', placeholder="01010101")
+        .input-group-append
+          button.btn.btn-outline-secondary(type='button', onclick="tapeinput()") Submit
+    .col.text-center
+      button.btn.btn-outline-secondary(type='button',onclick='submit()') Submit Turing Machine
+  .row.justify-content-center
+    .col.text-center
+      #head.i.fas.fa-sort-down(style='font-size: 50px;')
+      svg#tapeSVG(viewBox='0 0 1900 100', style='border:0px solid;')
+        | Your browser does not support the svg tag.
+  .row.justify-content-center
+    .col.text-center
+      button.btn
+        i.fas.fa-fast-backward(onclick='reverseskip()')
+      button.btn(onclick='reverseStep()')
+        i.fas.fa-step-backward
+      button.btn(onclick='playClicked()')
+        i.fas.fa-play
+      button.btn(onclick='step()')
+        i.fas.fa-step-forward
+      button.btn(onclick='fastforward()')
+        i.fas.fa-fast-forward
+  include partials/howtoplay
+block scripts
+  
+  script(src='/js/lib/snap.svg.js')
+  script(src='/js/lib/index.js')
+  script(src='/js/lib/game.js')
+  script.
+    var json = !{JSON.stringify(level)}
+  script(src='/js/level.js')
+  

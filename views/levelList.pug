@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 User Created Levels
+  p.lead These are levels that users have created.
+  hr
+  .list-group
+    each val in levels
+      a.list-group-item.list-group-item-action.flex-column.align-items-start(href="levels/" + val._id)
+        .d-flex.w-100.justify-content-between
+          h5.mb-1 Goal: #{val.goal}
+          small Created at #{val.createdAt}
+        

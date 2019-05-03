@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1 Interactive Turing Machines
+  p.lead A project about learning how to construct Turing machines
+    p To select a level, go to the created levels
+  hr
+  h3 What is a Turing Machine?
+  p.lead A Turing machine is a mathematical model of a computer which can model the computing capability of a general-purpose computer.
+  p.lead It has an infinitely long tape, containing cells, with each cell containing a symbol. There is a tape head that is positioned above one of the tape cells; this cell is what the Turing machine reads off the tape. 
+  p.lead Given the current state the machine is in, plus the symbol from the tape, the machine picks a transition to apply
+  p.lead A transition can perform three actions: 
+  ul
+    li 
+      p.lead Write to the tape
+    li
+      p.lead Move the tape head left or right
+    li
+      p.lead Change the state of the machine
+  p.lead And they are found in the form an arrow labelled "Read : Write Move" pointing to the new state
+  p.lead If no transition can be found in a given state, then the machine will halt.
+  p.lead If it halts on a final state, the tape input will be accepted, else it will be rejected.
+  include partials/howtoplay

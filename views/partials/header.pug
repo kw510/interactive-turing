@@ -1,0 +1,15 @@
+.navbar.navbar-dark.bg-dark.navbar-expand-lg
+  .container
+    a.navbar-brand(href='/')
+      img(src="/logo.png")
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+      span.sr-only Toggle navigation
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav.nav-fill.w-50
+        li.nav-item(class=(title === 'Home') ? 'active' : undefined)
+          a.nav-link.h6(href='/') Home
+        li.nav-item(class=(title === 'Level Creator') ? 'active' : undefined)
+          a.nav-link.h6(href='/creator') Level Creator
+        li.nav-item(class=(title === 'Levels') ? 'active' : undefined)
+          a.nav-link.h6(href='/levels') Created Levels
